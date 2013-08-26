@@ -6,7 +6,7 @@ class CliApp extends Symfony\Component\Console\Application
     {
         $composer = file_get_contents(dirname(__DIR__).'/composer.json');
         $composer = json_decode($composer, true);
-        parent::__construct($composer['name'], $composer['version']);
+        parent::__construct(@$composer['description'] ?: $composer['name'], $composer['version']);
     }
 
     public static function bootstrap()
